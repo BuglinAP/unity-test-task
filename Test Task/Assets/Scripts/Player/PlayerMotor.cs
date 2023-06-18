@@ -8,16 +8,9 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     [SerializeField] private float movementSpeed = 6f;
 
-    // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ProcessMove(Vector2 input)

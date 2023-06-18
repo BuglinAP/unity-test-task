@@ -6,11 +6,16 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private PlayerInput.OnFootActions onFoot;
     private PlayerMotor motor;
     private PlayerLook look;
+    private PlayerInput.OnFootActions onFoot;
 
-    void Awake()
+    public PlayerInput.OnFootActions GetOnFootActions()
+    {
+        return onFoot;
+    }
+
+    private void Awake()
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
@@ -19,12 +24,12 @@ public class InputManager : MonoBehaviour
         look = GetComponent<PlayerLook>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
     }
 
-    void LateUpdate()
+    private void LateUpdate()
     {
         look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
     }
