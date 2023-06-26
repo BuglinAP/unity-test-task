@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerLook : MonoBehaviour
 {
-    [SerializeField] public Camera playerCamera;
+    public Camera playerCamera;
     [SerializeField] private float xRotation = 0f;
     [SerializeField] private float xSensitivity = 30f;
     [SerializeField] private float ySensitivity = 30f;
-
     public void ProcessLook(Vector2 input)
     {
         float mouseX = input.x;

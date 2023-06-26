@@ -5,12 +5,10 @@ using UnityEngine;
 public class ColorCube : Interactable
 {
     private Renderer cubeRenderer;
-    private Color originalColor;
 
     private void Start()
     {
         cubeRenderer = GetComponent<Renderer>();
-        originalColor = cubeRenderer.material.color;
     }
 
     protected override void Interact()

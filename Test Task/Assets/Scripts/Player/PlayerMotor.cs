@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector3 playerVelocity;
     [SerializeField] private float movementSpeed = 6f;
 
     void Start()
@@ -18,6 +17,6 @@ public class PlayerMotor : MonoBehaviour
         Vector3 moveDirection = Vector3.zero;
         moveDirection.x = input.x;
         moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * movementSpeed * Time.deltaTime);
+        controller.Move(movementSpeed * Time.deltaTime * transform.TransformDirection(moveDirection));
     }
 }
