@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
@@ -7,7 +5,7 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     [SerializeField] private float movementSpeed = 6f;
 
-    void Start()
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
     }

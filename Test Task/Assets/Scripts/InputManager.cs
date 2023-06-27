@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Photon.Pun;
 
-public class InputManager : MonoBehaviour
+public class InputManager : MonoBehaviourPun
 {
     private PlayerInput playerInput;
     private PlayerMotor motor;
@@ -19,19 +17,33 @@ public class InputManager : MonoBehaviour
     {
         playerInput = new PlayerInput();
         onFoot = playerInput.OnFoot;
+    }
 
+    private void Start()
+    {
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+
+        if (photonView.IsMine == false)
+        {
+            Destroy(GetComponentInChildren<Camera>().gameObject);
+        }
     }
 
     private void FixedUpdate()
     {
-        motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        if (photonView.IsMine)
+        {
+            motor.ProcessMove(onFoot.Movement.ReadValue<Vector2>());
+        }
     }
 
     private void LateUpdate()
     {
-        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        if (photonView.IsMine)
+        {
+            look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        }
     }
 
     private void OnEnable()
